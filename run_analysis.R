@@ -14,9 +14,6 @@
 ## Assumes that the working directory is or contains the "UCI HAR dataset" folder
 
 run_analysis <- function() {
-
-  # Load the data.table library
-  library(data.table)
   
   # If we are not already in the dataset folder, set our working directory there
   if (file.exists("UCI HAR dataset")) {
@@ -46,13 +43,13 @@ run_analysis <- function() {
   completeSubj <- rbind(testSubj, trainSubj)
   
   # Set descriptive column names
-  colnames(completeXTmp) <- features[,"name"]
+  colnames(completeXTmp) <- features[,"Name"]
   colnames(completeYTmp) <- c("id")
   colnames(completeSubj) <- c("SubjectID")
   
   # Extract only the columns with mean and std data
   # First find those columns, they have either mean() or std() in the name
-  cols <- grep("(mean|std)\\(\\)", features[,"name"])
+  cols <- grep("(mean|std)\\(\\)", features[,"Name"])
   
   # Extract these columns
   completeX <- completeXTmp[,cols]
